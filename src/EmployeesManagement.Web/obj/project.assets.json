@@ -154,7 +154,7 @@
       },
       "EmployeesManagement.Core/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
+        "framework": ".NETCoreApp,Version=v5.0",
         "compile": {
           "bin/placeholder/EmployeesManagement.Core.dll": {}
         },
@@ -164,7 +164,7 @@
       },
       "EmployeesManagement.Infrastructure/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
+        "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "EmployeesManagement.Core": "1.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
