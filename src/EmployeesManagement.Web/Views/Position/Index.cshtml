@@ -1,0 +1,45 @@
+﻿@model IEnumerable<EmployeesManagement.Web.Models.Position.PositionViewModel>
+
+@{
+    ViewBag.Title = "Должности";
+}
+
+<div class="row mb-5 mt-5">
+    <div class="col-12 shadow-lg p-0 bg-white">
+        <div class="card">
+            <div class="card-header">
+                <h3>Должности</h3>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    @if (Model.Any())
+                    {
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Id
+                                </th>
+                                <th>
+                                    Название
+                                </th>
+                            </tr>
+                            @foreach (var position in Model)
+                            {
+                                <tr>
+                                    <td>@position.Id</td>
+                                    <td>@position.Name</td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                    else
+                    {
+                        <h2 class="text-center text-danger">
+                            Список пуст
+                        </h2>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
