@@ -88,5 +88,72 @@ namespace EmployeesManagement.Web.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var companyDTO = _companyService.Get(id);
+
+            if (companyDTO == null)
+            {
+                return RedirectToAction("Error", "Home", new { requestId = "400", errorInfo = "Компания не найдена" });
+            }
+
+            var editCompanyViewModel = new EditCompanyViewModel()
+            { 
+             Id = companyDTO.Id,
+              ActivityName = companyDTO.ActivityName,
+               LegalFormName = companyDTO.LegalFormName,
+                Name = companyDTO.Name
+            };
+
+            return View(new EditCompanySelectListViewModel()
+            {
+                EditCompanyViewModel = editCompanyViewModel,
+                LegalForms = new SelectList(_legalFormService.GetAllName()),
+                Activities = new SelectList(_activityService.GetAllName())
+            });
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditCompanySelectListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var companyDTO = new CompanyDTO() 
+                    {
+                     Id = model.EditCompanyViewModel.Id,
+                      ActivityName = model.EditCompanyViewModel.ActivityName,
+                       LegalFormName = model.EditCompanyViewModel.LegalFormName,
+                        Name = model.EditCompanyViewModel.Name
+                    };
+
+                    _companyService.Edit(companyDTO);
+
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (ValidationException ex)
+                {
+                    ModelState.AddModelError(ex.Property, ex.Message);
+                }
+            }
+
+            model.LegalForms = new SelectList(_legalFormService.GetAllName());
+            model.Activities = new SelectList(_activityService.GetAllName());
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+           
+                _companyService.Delete(id);
+
+                return RedirectToAction(nameof(Index));
+           
+        }
     }
 }

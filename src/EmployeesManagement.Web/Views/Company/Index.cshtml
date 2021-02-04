@@ -36,6 +36,9 @@
                                 <th>
                                     Кол.раб. в комп.(разм комп.)
                                 </th>
+                                <th>
+
+                                </th>
                             </tr>
                             @foreach (var company in Model)
                             {
@@ -45,6 +48,12 @@
                                     <td>@company.LegalFormName</td>
                                     <td>@company.ActivityName</td>
                                     <td>@company.Size</td>
+                                    <td>
+                                        <form asp-action="Delete" asp-route-id="@company.Id">
+                                            <button onclick="if (!confirm('Вы уверены, что хотите удалить этот элемент?')) { return false }" type="submit" class="btn btn-danger">Удалить</button>
+                                            <a asp-action="Edit" asp-route-id="@company.Id" class="btn btn-primary">Изменить</a>
+                                        </form>
+                                    </td>
                                 </tr>
                             }
                         </table>

@@ -64,7 +64,22 @@ namespace EmployeesManagement.Core.Services
 
         public void Edit(CompanyDTO model)
         {
-            throw new NotImplementedException();
+            var company = Database.Company.Get(model.Id);
+
+            if (company == null)
+            {
+                throw new ValidationException("Компания не найдена", string.Empty);
+            }
+
+            int legalFormId = GetLegalFormIdByLegalFormName(model.LegalFormName);
+            int activityId = GetActivityIdByActivityName(model.ActivityName);
+
+            company.LegalFormId = legalFormId;
+            company.ActivityId = activityId;
+            company.Name = model.Name;
+
+            Database.Company.Update(company);
+            Database.Save();
         }
 
         private int GetLegalFormIdByLegalFormName(string legalFormName)
