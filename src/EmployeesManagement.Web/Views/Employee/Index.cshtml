@@ -1,0 +1,71 @@
+﻿@model IEnumerable<EmployeesManagement.Web.Models.Employee.EmployeeViewModel>
+
+@{
+    ViewBag.Title = "Работники";
+}
+
+<div class="row mb-5">
+
+    <div class="col-12 shadow-lg p-0 bg-white">
+        <div class="card">
+            <div class="card-header">
+                <h3>Работники</h3>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    @if (Model.Any())
+                    {
+                        <a class="btn btn-success mb-3" asp-controller="Employee" asp-action="Add">Добавить работника</a>
+
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Id
+                                </th>
+
+                                <th>
+                                    ФИО
+                                </th>
+                                <th>
+                                    Дата принятия на работу
+                                </th>
+                                <th>
+                                    Компания
+                                </th>
+                                <th>
+                                    Должность
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                            @foreach (var employee in Model)
+                            {
+                                <tr>
+                                    <td>@employee.Id</td>
+                                    <td>@employee.Secondname @employee.Firstname @employee.Middlename</td>
+                                    <td>@employee.DateEmployment.ToShortDateString()</td>
+                                    <td>@employee.CompanyName</td>
+                                    <td>@employee.PositionName</td>
+
+                                    <td>
+                                        <form asp-action="Delete" asp-route-id="@employee.Id">
+                                            <button onclick="if (!confirm('Вы уверены, что хотите удалить этот элемент?')) { return false }" type="submit" class="btn btn-danger">Удалить</button>
+                                            <a asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-primary">Изменить</a>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                    else
+                    {
+                        <h2 class="text-center text-danger">
+                            Список компаний пуст
+                        </h2>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

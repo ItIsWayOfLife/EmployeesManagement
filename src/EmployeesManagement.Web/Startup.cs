@@ -39,13 +39,17 @@ namespace EmployeesManagement.Web
             services.AddTransient<ILegalFormService, LegalFormService>();
             services.AddTransient<IPositionService, PositionService>();
             services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<IEmployeeService, EmployeeService>();
 
             services.AddTransient<IConverter<Company, CompanyDTO>, CompanyConverter>();
+            services.AddTransient<IConverter<Employee, EmployeeDTO>, EmployeeConverter>();
 
             services.AddTransient<IActivityViewConverter, ActivityViewConverter>();
             services.AddTransient<ILegalFormViewConverter, LegalFormViewConverter>();
             services.AddTransient<IPositionViewConverter, PositionViewConverter>();
             services.AddTransient<ICompanyViewConverter, CompanyViewConverter>();
+            services.AddTransient<IEmployeeViewConverter, EmployeeViewConverter>();
+
 
             services.AddControllersWithViews();
         }

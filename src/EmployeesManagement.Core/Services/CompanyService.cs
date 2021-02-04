@@ -11,12 +11,12 @@ namespace EmployeesManagement.Core.Services
 {
     public class CompanyService : Service, ICompanyService
     {
-        private readonly IConverter<Company, CompanyDTO> _converterCompany;
+        private readonly IConverter<Company, CompanyDTO> _companyConverter;
 
         public CompanyService(IUnitOfWork uow,
-             IConverter<Company, CompanyDTO> converterCompany) : base(uow)
+             IConverter<Company, CompanyDTO> companyConverter) : base(uow)
         {
-            _converterCompany = converterCompany;
+            _companyConverter = companyConverter;
         }
 
         public CompanyDTO Get(int id)
@@ -47,7 +47,7 @@ namespace EmployeesManagement.Core.Services
             int legalFormId = GetLegalFormIdByLegalFormName(model.LegalFormName);
             int activityId = GetActivityIdByActivityName(model.ActivityName);
 
-            var company = _converterCompany.ConvertDTOByModel(model);
+            var company = _companyConverter.ConvertDTOByModel(model);
 
             company.LegalFormId = legalFormId;
             company.ActivityId = activityId;
@@ -116,7 +116,7 @@ namespace EmployeesManagement.Core.Services
             company.LegalForm = Database.LegalForm.Get(company.LegalFormId);
             company.Activity = Database.Activity.Get(company.ActivityId);
 
-            var companyDTO = _converterCompany.ConvertModelByDTO(company);
+            var companyDTO = _companyConverter.ConvertModelByDTO(company);
 
             companyDTO.Size = Database.Company.GetCurrentSizeByCompanyId(company.Id);
 
