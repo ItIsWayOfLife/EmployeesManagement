@@ -149,11 +149,16 @@ namespace EmployeesManagement.Web.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-           
+            try
+            {
                 _companyService.Delete(id);
 
                 return RedirectToAction(nameof(Index));
-           
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Error", "Home", new { requestId = "500", errorInfo = string.Empty });
+            }
         }
     }
 }
