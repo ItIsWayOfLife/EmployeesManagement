@@ -5,9 +5,6 @@ using EmployeesManagement.Web.Models.Employee;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeesManagement.Web.Controllers
 {
@@ -116,6 +113,21 @@ namespace EmployeesManagement.Web.Controllers
             model.Companies = new SelectList(_companyService.GetAllName());
 
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                _empoyeeService.Delete(id);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Error", "Home", new { requestId = "500", errorInfo = string.Empty });
+            }
         }
     }
 }
