@@ -45,11 +45,34 @@ namespace EmployeesManagement.Web.Controllers
             return View(new AddEmployeeSelectListViewModel()
             {
                 AddEmployeeViewModel = new AddEmployeeViewModel() { DateEmployment = DateTime.Now },
-                Positions = null,
-                Companies = null
+                Positions = new SelectList(_positionService.GetAllName()),
+                Companies = new SelectList(_companyService.GetAllName())
             });
         }
 
-       
+        [HttpPost]
+        public IActionResult Add(AddEmployeeSelectListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var employeeDTO = _employeeViewConverter.ConvertAddViewModelToModel(model.AddEmployeeViewModel);
+
+                    _empoyeeService.Add(employeeDTO);
+
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (ValidationException ex)
+                {
+                    ModelState.AddModelError(ex.Property, ex.Message);
+                }
+            }
+
+            model.Positions = new SelectList(_positionService.GetAllName());
+            model.Companies = new SelectList(_companyService.GetAllName());
+
+            return View(model);
+        }
     }
 }

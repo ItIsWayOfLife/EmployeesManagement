@@ -1,0 +1,64 @@
+﻿@model EmployeesManagement.Web.Models.Employee.AddEmployeeSelectListViewModel
+
+@{
+    ViewBag.Title = "Добавление сотрудника";
+}
+
+<div class="row mb-5">
+    <div class="col-6 m-auto">
+        <div class="card m-auto">
+            <div class="card-header">
+                <h3>Добавление сотрудника</h3>
+            </div>
+            <div class="card-body">
+
+                <form method="post" asp-action="Add" enctype="multipart/form-data">
+
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                    <div class="form-group col-12">
+                        <label asp-for="AddEmployeeViewModel.Firstname"></label>
+                        <span class="text-danger" asp-validation-for="AddEmployeeViewModel.Firstname"></span><br />
+                        <input class="form-control" asp-for="AddEmployeeViewModel.Firstname" />
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label asp-for="AddEmployeeViewModel.Secondname"></label>
+                        <span class="text-danger" asp-validation-for="AddEmployeeViewModel.Secondname"></span><br />
+                        <input class="form-control" asp-for="AddEmployeeViewModel.Secondname" />
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label asp-for="AddEmployeeViewModel.Middlename"></label>
+                        <span class="text-danger" asp-validation-for="AddEmployeeViewModel.Middlename"></span><br />
+                        <input class="form-control" asp-for="AddEmployeeViewModel.Middlename" />
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label asp-for="AddEmployeeViewModel.DateEmployment"></label>
+                        <span class="text-danger" asp-validation-for="AddEmployeeViewModel.DateEmployment"></span><br />
+                        <input type="date" class="form-control" asp-for="AddEmployeeViewModel.DateEmployment" />
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label asp-for="AddEmployeeViewModel.CompanyName"></label>
+                        <span class="text-danger" asp-validation-for="AddEmployeeViewModel.CompanyName"></span><br />
+                        <select class="form-control" asp-items="Model.Companies" asp-for="AddEmployeeViewModel.CompanyName"></select>
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label asp-for="AddEmployeeViewModel.PositionName"></label>
+                        <span class="text-danger" asp-validation-for="AddEmployeeViewModel.PositionName"></span><br />
+                        <select class="form-control" asp-items="Model.Positions" asp-for="AddEmployeeViewModel.PositionName"></select>
+                    </div><br />
+
+                    <div class="form-group col-12">
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                        <a asp-action="Index" class="btn btn-warning">Назад</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
