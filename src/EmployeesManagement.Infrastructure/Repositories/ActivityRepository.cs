@@ -45,6 +45,22 @@ namespace EmployeesManagement.Infrastructure.Repositories
             return activities;
         }
 
+        public int? GetActivityIdByActivityName(string activityName)
+        {
+            var command = CreateCommand("SELECT Id FROM Activities WITH(NOLOCK) WHERE Name = @Name");
+
+            command.Parameters.AddWithValue("@Name", activityName);
+
+            if (command.ExecuteScalar() == null)
+            {
+                return null;
+            }
+            else
+            {
+                return (int?)command.ExecuteScalar();
+            }
+        }
+
         /// <summary>
         /// Read data and convert to activity model.
         /// </summary>

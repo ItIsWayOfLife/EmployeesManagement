@@ -1,5 +1,6 @@
 ﻿using EmployeesManagement.Core.DTOs;
 using EmployeesManagement.Core.Entities;
+using EmployeesManagement.Core.Exceptions;
 using EmployeesManagement.Core.Interfaces;
 using EmployeesManagement.Core.Interfaces.IServices;
 using EmployeesManagement.Core.Services.Common;
@@ -43,7 +44,16 @@ namespace EmployeesManagement.Core.Services
 
         public void Add(CompanyDTO model)
         {
-            throw new NotImplementedException();
+            int legalFormId = GetLegalFormIdByLegalFormName(model.LegalFormName);
+            int activityId = GetActivityIdByActivityName(model.ActivityName);
+
+            var company = _converterCompany.ConvertDTOByModel(model);
+
+            company.LegalFormId = legalFormId;
+            company.ActivityId = activityId;
+
+            Database.Company.Create(company);
+            Database.Save();
         }
 
         public void Delete(int id)
@@ -55,6 +65,30 @@ namespace EmployeesManagement.Core.Services
         public void Edit(CompanyDTO model)
         {
             throw new NotImplementedException();
+        }
+
+        private int GetLegalFormIdByLegalFormName(string legalFormName)
+        {
+            int? legalFormId = null;
+
+            if (legalFormId == null)
+            {
+                throw new ValidationException($"Не установлена организационно-правовая форма", string.Empty);
+            }
+
+            return legalFormId.Value;
+        }
+
+        private int GetActivityIdByActivityName(string activityName)
+        {
+            int? activityId = null;
+
+            if (activityId == null)
+            {
+                throw new ValidationException($"Не установлен вид деятельности", string.Empty);
+            }
+
+            return activityId.Value;
         }
 
         /// <summary>
