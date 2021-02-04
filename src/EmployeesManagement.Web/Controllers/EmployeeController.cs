@@ -74,5 +74,48 @@ namespace EmployeesManagement.Web.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var employeeDTO = _empoyeeService.Get(id);
+
+            if (employeeDTO == null)
+            {
+                return RedirectToAction("Error", "Home", new { requestId = "400", errorInfo = "Сотрудник не найден" });
+            }
+
+            return View(new EditEmployeeSelectListViewModel()
+            {
+                EditEmployeeViewModel = _employeeViewConverter.ConvertModelToEditViewModel(employeeDTO),
+                Companies = new SelectList(_companyService.GetAllName()),
+                Positions = new SelectList(_positionService.GetAllName())
+            });
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditEmployeeSelectListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var employeeDTO = _employeeViewConverter.ConvertEditViewModelToModel(model.EditEmployeeViewModel);
+
+                    _empoyeeService.Edit(employeeDTO);
+
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (ValidationException ex)
+                {
+                    ModelState.AddModelError(ex.Property, ex.Message);
+                }
+            }
+
+            model.Positions = new SelectList(_positionService.GetAllName());
+            model.Companies = new SelectList(_companyService.GetAllName());
+
+            return View(model);
+        }
     }
 }
