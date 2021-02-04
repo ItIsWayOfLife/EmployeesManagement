@@ -1,3 +1,5 @@
+using EmployeesManagement.Core.DTOs;
+using EmployeesManagement.Core.Entities;
 using EmployeesManagement.Core.Interfaces;
 using EmployeesManagement.Core.Interfaces.IServices;
 using EmployeesManagement.Core.Services;
@@ -12,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmployeesManagement.Core.Converters;
 
 namespace EmployeesManagement.Web
 {
@@ -32,6 +35,8 @@ namespace EmployeesManagement.Web
             services.AddTransient<IActivityService, ActivityService>();
             services.AddTransient<ILegalFormService, LegalFormService>();
             services.AddTransient<IPositionService, PositionService>();
+
+            services.AddTransient<IConverter<Company, CompanyDTO>, CompanyConverter>();
 
             services.AddControllersWithViews();
         }
