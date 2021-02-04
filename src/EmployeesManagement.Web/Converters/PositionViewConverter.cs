@@ -1,11 +1,11 @@
 ﻿using EmployeesManagement.Core.Entities;
-using EmployeesManagement.Web.Interfaces.IConverters;
+using EmployeesManagement.Web.Interfaces.IViewConverters;
 using EmployeesManagement.Web.Models.Position;
 using System.Collections.Generic;
 
 namespace EmployeesManagement.Web.Converters
 {
-    public class PositionConverter : IPositionConverter
+    public class PositionViewConverter : IPositionViewConverter
     {
         public IEnumerable<PositionViewModel> ConvertModelsToViewModels(IEnumerable<Position> models)
         {

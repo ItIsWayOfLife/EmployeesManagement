@@ -1,6 +1,6 @@
 ﻿using EmployeesManagement.Core.Interfaces.IServices;
 using EmployeesManagement.Web.Interfaces;
-using EmployeesManagement.Web.Interfaces.IConverters;
+using EmployeesManagement.Web.Interfaces.IViewConverters;
 using EmployeesManagement.Web.Models.Activity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -10,13 +10,13 @@ namespace EmployeesManagement.Web.Controllers
     public class ActivityController : Controller
     {
         private readonly IActivityService _activityService;
-        private readonly IActivityConverter _activityConverter;
+        private readonly IActivityViewConverter _activityViewConverter;
 
         public ActivityController(IActivityService activityService,
-            IActivityConverter activityConverter)
+            IActivityViewConverter activityViewConverter)
         {
             _activityService = activityService;
-            _activityConverter = activityConverter;
+            _activityViewConverter = activityViewConverter;
         }
 
         [HttpGet]
@@ -24,7 +24,7 @@ namespace EmployeesManagement.Web.Controllers
         {
             var activities = _activityService.GetAll();
 
-            var activityViewModels = _activityConverter.ConvertModelsToViewModels(activities);
+            var activityViewModels = _activityViewConverter.ConvertModelsToViewModels(activities);
 
             return View(activityViewModels);
         }

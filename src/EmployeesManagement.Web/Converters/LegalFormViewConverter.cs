@@ -1,5 +1,5 @@
 ﻿using EmployeesManagement.Core.Entities;
-using EmployeesManagement.Web.Interfaces.IConverters;
+using EmployeesManagement.Web.Interfaces.IViewConverters;
 using EmployeesManagement.Web.Models.LegalForm;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EmployeesManagement.Web.Converters
 {
-    public class LegalFormConverter : ILegalFormConverter
+    public class LegalFormViewConverter : ILegalFormViewConverter
     {
         public IEnumerable<LegalFormViewModel> ConvertModelsToViewModels(IEnumerable<LegalForm> models)
         {

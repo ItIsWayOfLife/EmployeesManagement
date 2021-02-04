@@ -1,6 +1,6 @@
 ﻿using EmployeesManagement.Core.Entities;
 using EmployeesManagement.Web.Interfaces;
-using EmployeesManagement.Web.Interfaces.IConverters;
+using EmployeesManagement.Web.Interfaces.IViewConverters;
 using EmployeesManagement.Web.Models.Activity;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EmployeesManagement.Web.Converters
 {
-    public class ActivityConverter : IActivityConverter
+    public class ActivityViewConverter : IActivityViewConverter
     {
         public IEnumerable<ActivityViewModel> ConvertModelsToViewModels(IEnumerable<Activity> models)
         {

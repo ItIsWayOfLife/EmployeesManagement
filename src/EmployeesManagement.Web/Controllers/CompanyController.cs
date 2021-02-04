@@ -1,13 +1,10 @@
-﻿using EmployeesManagement.Core.DTOs;
-using EmployeesManagement.Core.Exceptions;
+﻿using EmployeesManagement.Core.Exceptions;
 using EmployeesManagement.Core.Interfaces.IServices;
+using EmployeesManagement.Web.Interfaces.IViewConverters;
 using EmployeesManagement.Web.Models.Company;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeesManagement.Web.Controllers
 {
@@ -16,36 +13,27 @@ namespace EmployeesManagement.Web.Controllers
         private readonly ICompanyService _companyService;
         private readonly ILegalFormService _legalFormService;
         private readonly IActivityService _activityService;
+        private readonly ICompanyViewConverter _companyViewConverter;
 
         public CompanyController(ICompanyService companyService,
             ILegalFormService legalFormService,
-            IActivityService activityService)
+            IActivityService activityService,
+            ICompanyViewConverter companyViewConverter)
         {
             _companyService = companyService;
             _legalFormService = legalFormService;
             _activityService = activityService;
+            _companyViewConverter = companyViewConverter;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var models = _companyService.GetAll();
+            var companiesDTOs = _companyService.GetAll();
 
-            var companyViewModels = new List<CompanyViewModel>();
+            var companiesViews = _companyViewConverter.ConvertModelsToViewModels(companiesDTOs);
 
-            foreach (var model in models)
-            {
-                companyViewModels.Add(new CompanyViewModel()
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                    ActivityName = model.ActivityName,
-                    LegalFormName = model.LegalFormName,
-                    Size = model.Size
-                });
-            }
-
-            return View(companyViewModels);
+            return View(companiesViews);
         }
 
         [HttpGet]
@@ -65,15 +53,9 @@ namespace EmployeesManagement.Web.Controllers
             {
                 try
                 {
-                    var companyDTO =new CompanyDTO() 
-                    {
-                     ActivityName = model.AddCompanyViewModel.ActivityName,
-                      LegalFormName = model.AddCompanyViewModel.LegalFormName,
-                       Name = model.AddCompanyViewModel.Name
-                    };
+                    var companyDTO = _companyViewConverter.ConvertAddViewModelToModel(model.AddCompanyViewModel);
 
                     _companyService.Add(companyDTO);
-
 
                     return RedirectToAction(nameof(Index));
                 }
@@ -100,10 +82,10 @@ namespace EmployeesManagement.Web.Controllers
             }
 
             var editCompanyViewModel = new EditCompanyViewModel()
-            { 
-             Id = companyDTO.Id,
-              ActivityName = companyDTO.ActivityName,
-               LegalFormName = companyDTO.LegalFormName,
+            {
+                Id = companyDTO.Id,
+                ActivityName = companyDTO.ActivityName,
+                LegalFormName = companyDTO.LegalFormName,
                 Name = companyDTO.Name
             };
 
@@ -122,13 +104,7 @@ namespace EmployeesManagement.Web.Controllers
             {
                 try
                 {
-                    var companyDTO = new CompanyDTO() 
-                    {
-                     Id = model.EditCompanyViewModel.Id,
-                      ActivityName = model.EditCompanyViewModel.ActivityName,
-                       LegalFormName = model.EditCompanyViewModel.LegalFormName,
-                        Name = model.EditCompanyViewModel.Name
-                    };
+                    var companyDTO = _companyViewConverter.ConvertEditViewModelToModel(model.EditCompanyViewModel);
 
                     _companyService.Edit(companyDTO);
 

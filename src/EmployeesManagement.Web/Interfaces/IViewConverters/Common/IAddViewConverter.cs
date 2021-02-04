@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EmployeesManagement.Web.Interfaces.IConverters.Common
+namespace EmployeesManagement.Web.Interfaces.IViewConverters.Common
 {
-    public interface IAddConverter<TAddViewModel, TModel>
+    public interface IAddViewConverter<TAddViewModel, TModel>
          where TAddViewModel : class
          where TModel : class
     {

@@ -1,5 +1,5 @@
 ﻿using EmployeesManagement.Core.Interfaces.IServices;
-using EmployeesManagement.Web.Interfaces.IConverters;
+using EmployeesManagement.Web.Interfaces.IViewConverters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeesManagement.Web.Controllers
@@ -7,13 +7,13 @@ namespace EmployeesManagement.Web.Controllers
     public class PositionController : Controller
     {
         private readonly IPositionService _positionService;
-        private readonly IPositionConverter _positionConverter;
+        private readonly IPositionViewConverter _positionViewConverter;
 
         public PositionController(IPositionService positionService,
-            IPositionConverter positionConverter)
+            IPositionViewConverter positionViewConverter)
         {
             _positionService = positionService;
-            _positionConverter = positionConverter;
+            _positionViewConverter = positionViewConverter;
         }
 
         [HttpGet]
@@ -21,7 +21,7 @@ namespace EmployeesManagement.Web.Controllers
         {
             var positions = _positionService.GetAll();
 
-            var positionViewModels = _positionConverter.ConvertModelsToViewModels(positions);
+            var positionViewModels = _positionViewConverter.ConvertModelsToViewModels(positions);
 
             return View(positionViewModels);
         }
