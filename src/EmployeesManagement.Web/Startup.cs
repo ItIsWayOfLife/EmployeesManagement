@@ -30,6 +30,7 @@ namespace EmployeesManagement.Web
             services.AddTransient<IUnitOfWork, UnitOfWorkSqlServer>();
 
             services.AddTransient<IActivityService, ActivityService>();
+            services.AddTransient<ILegalFormService, LegalFormService>();
 
             services.AddControllersWithViews();
         }
