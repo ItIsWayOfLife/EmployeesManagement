@@ -1,0 +1,45 @@
+﻿@model IEnumerable<EmployeesManagement.Web.Models.Activity.ActivityViewModel>
+
+@{
+    ViewBag.Title = "Виды деятельности";
+}
+
+<div class="row mb-5 mt-5">
+    <div class="col-12 shadow-lg p-0 bg-white">
+        <div class="card">
+            <div class="card-header">
+                <h3>Виды деятельности</h3>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    @if (Model.Any())
+                    {
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Id
+                                </th>
+                                <th>
+                                    Название
+                                </th>
+                            </tr>
+                            @foreach (var activity in Model)
+                            {
+                                <tr>
+                                    <td>@activity.Id</td>
+                                    <td>@activity.Name</td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                    else
+                    {
+                        <h2 class="text-center text-danger">
+                            Список пуст
+                        </h2>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

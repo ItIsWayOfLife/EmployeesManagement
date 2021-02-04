@@ -1,3 +1,7 @@
+using EmployeesManagement.Core.Interfaces;
+using EmployeesManagement.Core.Interfaces.IServices;
+using EmployeesManagement.Core.Services;
+using EmployeesManagement.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +27,10 @@ namespace EmployeesManagement.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IUnitOfWork, UnitOfWorkSqlServer>();
+
+            services.AddTransient<IActivityService, ActivityService>();
+
             services.AddControllersWithViews();
         }
 

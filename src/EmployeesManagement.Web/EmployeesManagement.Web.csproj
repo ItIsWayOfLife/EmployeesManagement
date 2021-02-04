@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EmployeesManagement.Core\EmployeesManagement.Core.csproj" />
+    <ProjectReference Include="..\EmployeesManagement.Infrastructure\EmployeesManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
