@@ -45,6 +45,22 @@ namespace EmployeesManagement.Infrastructure.Repositories
             return legalForms;
         }
 
+        public int? GetIdByName(string name)
+        {
+            var command = CreateCommand("SELECT Id FROM LegalForms WITH(NOLOCK) WHERE Name = @Name");
+
+            command.Parameters.AddWithValue("@Name", name);
+
+            if (command.ExecuteScalar() == null)
+            {
+                return null;
+            }
+            else
+            {
+                return (int?)command.ExecuteScalar();
+            }
+        }
+
         /// <summary>
         /// Read data and convert to legal form model.
         /// </summary>

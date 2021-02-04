@@ -69,7 +69,7 @@ namespace EmployeesManagement.Core.Services
 
         private int GetLegalFormIdByLegalFormName(string legalFormName)
         {
-            int? legalFormId = null;
+            int? legalFormId = Database.LegalForm.GetIdByName(legalFormName);
 
             if (legalFormId == null)
             {
@@ -81,7 +81,7 @@ namespace EmployeesManagement.Core.Services
 
         private int GetActivityIdByActivityName(string activityName)
         {
-            int? activityId = null;
+            int? activityId = Database.Activity.GetIdByName(activityName);
 
             if (activityId == null)
             {

@@ -45,11 +45,11 @@ namespace EmployeesManagement.Infrastructure.Repositories
             return activities;
         }
 
-        public int? GetActivityIdByActivityName(string activityName)
+        public int? GetIdByName(string name)
         {
             var command = CreateCommand("SELECT Id FROM Activities WITH(NOLOCK) WHERE Name = @Name");
 
-            command.Parameters.AddWithValue("@Name", activityName);
+            command.Parameters.AddWithValue("@Name", name);
 
             if (command.ExecuteScalar() == null)
             {

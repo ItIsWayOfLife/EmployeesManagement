@@ -3,13 +3,8 @@ using EmployeesManagement.Core.Interfaces.IRepositories.Common;
 
 namespace EmployeesManagement.Core.Interfaces.IRepositories
 {
-    public interface IActivityRepository : IGetableRepository<Activity>
+    public interface IActivityRepository : IGetableRepository<Activity>, IGetIdByName
     {
-        /// <summary>
-        /// Get activity id by activity name.
-        /// </summary>
-        /// <param name="activityName">Activity name.</param>
-        /// <returns>Id activity.</returns>
-        int? GetActivityIdByActivityName(string activityName);
+
     }
 }

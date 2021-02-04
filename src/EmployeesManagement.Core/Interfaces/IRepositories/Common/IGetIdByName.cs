@@ -13,6 +13,6 @@ namespace EmployeesManagement.Core.Interfaces.IRepositories.Common
         /// </summary>
         /// <param name="activityName">Model name.</param>
         /// <returns>Id model.</returns>
-        int? GetIdByName(string name);
+       public int? GetIdByName(string name);
     }
 }
