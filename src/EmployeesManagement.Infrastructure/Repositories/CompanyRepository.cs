@@ -106,5 +106,21 @@ namespace EmployeesManagement.Infrastructure.Repositories
                 ActivityId = Convert.ToInt32(reader["ActivityId"])
             };
         }
+
+        public int? GetIdByName(string name)
+        {
+            var command = CreateCommand("SELECT Id FROM Companies WITH(NOLOCK) WHERE Name = @Name");
+
+            command.Parameters.AddWithValue("@Name", name);
+
+            if (command.ExecuteScalar() == null)
+            {
+                return null;
+            }
+            else
+            {
+                return (int?)command.ExecuteScalar();
+            }
+        }
     }
 }

@@ -45,6 +45,22 @@ namespace EmployeesManagement.Infrastructure.Repositories
             return positions;
         }
 
+        public int? GetIdByName(string name)
+        {
+            var command = CreateCommand("SELECT Id FROM Positions WITH(NOLOCK) WHERE Name = @Name");
+
+            command.Parameters.AddWithValue("@Name", name);
+
+            if (command.ExecuteScalar() == null)
+            {
+                return null;
+            }
+            else
+            {
+                return (int?)command.ExecuteScalar();
+            }
+        }
+
         /// <summary>
         /// Read data and convert to position model.
         /// </summary>

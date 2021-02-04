@@ -3,7 +3,7 @@ using EmployeesManagement.Core.Interfaces.IRepositories.Common;
 
 namespace EmployeesManagement.Core.Interfaces.IRepositories
 {
-    public interface ICompanyRepository : ICrudableRepository<Company>
+    public interface ICompanyRepository : ICrudableRepository<Company>, IGetIdByName
     {
         /// <summary>
         /// Get current size company by company id.

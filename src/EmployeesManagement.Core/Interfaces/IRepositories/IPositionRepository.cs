@@ -3,7 +3,7 @@ using EmployeesManagement.Core.Interfaces.IRepositories.Common;
 
 namespace EmployeesManagement.Core.Interfaces.IRepositories
 {
-    public interface IPositionRepository : IGetableRepository<Position>
+    public interface IPositionRepository : IGetableRepository<Position>, IGetIdByName
     {
 
     }

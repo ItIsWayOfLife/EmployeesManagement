@@ -1,5 +1,6 @@
 ﻿using EmployeesManagement.Core.DTOs;
 using EmployeesManagement.Core.Entities;
+using EmployeesManagement.Core.Exceptions;
 using EmployeesManagement.Core.Interfaces;
 using EmployeesManagement.Core.Interfaces.IServices;
 using EmployeesManagement.Core.Services.Common;
@@ -58,6 +59,30 @@ namespace EmployeesManagement.Core.Services
             }
 
             return employeeDTOs;
+        }
+
+        private int GetPositionIdByPositionName(string positionName)
+        {
+            int? positionId = Database.Position.GetIdByName(positionName);
+
+            if (positionId == null)
+            {
+                throw new ValidationException($"Не установлена должность", string.Empty);
+            }
+
+            return positionId.Value;
+        }
+
+        private int GetCompanyIdByCompanyName(string companyName)
+        {
+            int? companyId = Database.Company.GetIdByName(companyName);
+
+            if (companyId == null)
+            {
+                throw new ValidationException($"Не установлена компания", string.Empty);
+            }
+
+            return companyId.Value;
         }
 
         private EmployeeDTO ConvertEmployeeToEmployeeDTO(Employee employee)
