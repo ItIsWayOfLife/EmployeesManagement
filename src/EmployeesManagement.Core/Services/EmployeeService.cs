@@ -28,7 +28,8 @@ namespace EmployeesManagement.Core.Services
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Database.Employee.Delete(id);
+            Database.Save();
         }
 
         public void Edit(EmployeeDTO model)
