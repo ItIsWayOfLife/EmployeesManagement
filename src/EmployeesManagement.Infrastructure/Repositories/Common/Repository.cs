@@ -1,8 +1,8 @@
 ﻿using System.Data.SqlClient;
 
-namespace EmployeesManagement.Infrastructure.Repositories
+namespace EmployeesManagement.Infrastructure.Repositories.Common
 {
-    abstract class Repository
+    internal abstract class Repository
     {
         protected SqlConnection _context;
         protected SqlTransaction _transaction;
