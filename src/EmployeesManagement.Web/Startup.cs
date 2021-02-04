@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using EmployeesManagement.Core.Converters;
 using EmployeesManagement.Web.Interfaces;
 using EmployeesManagement.Web.Converters;
+using EmployeesManagement.Web.Interfaces.IConverters;
 
 namespace EmployeesManagement.Web
 {
@@ -42,6 +43,8 @@ namespace EmployeesManagement.Web
             services.AddTransient<IConverter<Company, CompanyDTO>, CompanyConverter>();
 
             services.AddTransient<IActivityConverter, ActivityConverter>();
+            services.AddTransient<ILegalFormConverter, LegalFormConverter>();
+            services.AddTransient<IPositionConverter, PositionConverter>();
 
             services.AddControllersWithViews();
         }

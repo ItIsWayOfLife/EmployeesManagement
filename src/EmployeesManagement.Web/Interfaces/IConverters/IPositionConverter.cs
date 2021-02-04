@@ -1,14 +1,14 @@
 ﻿using EmployeesManagement.Core.Entities;
 using EmployeesManagement.Web.Interfaces.IConverters.Common;
-using EmployeesManagement.Web.Models.Activity;
+using EmployeesManagement.Web.Models.Position;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EmployeesManagement.Web.Interfaces
+namespace EmployeesManagement.Web.Interfaces.IConverters
 {
-    public interface IActivityConverter : IViewConverter<Activity, ActivityViewModel>
+    public interface IPositionConverter : IViewConverter<Position, PositionViewModel>
     {
 
     }
