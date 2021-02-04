@@ -4,11 +4,7 @@ using EmployeesManagement.Core.Exceptions;
 using EmployeesManagement.Core.Interfaces;
 using EmployeesManagement.Core.Interfaces.IServices;
 using EmployeesManagement.Core.Services.Common;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EmployeesManagement.Core.Services
 {
@@ -24,7 +20,16 @@ namespace EmployeesManagement.Core.Services
 
         public void Add(EmployeeDTO model)
         {
-            throw new NotImplementedException();
+            int positionId = GetPositionIdByPositionName(model.PositionName);
+            int companyId = GetCompanyIdByCompanyName(model.CompanyName);
+
+            var employee = _employeeConverter.ConvertDTOByModel(model);
+
+            employee.PositionId = positionId;
+            employee.CompanyId = companyId;
+
+            Database.Employee.Create(employee);
+            Database.Save();
         }
 
         public void Delete(int id)
@@ -35,7 +40,21 @@ namespace EmployeesManagement.Core.Services
 
         public void Edit(EmployeeDTO model)
         {
-            throw new NotImplementedException();
+            var employee = Database.Employee.Get(model.Id);
+
+            if (employee == null)
+                throw new ValidationException("Работник не найден", string.Empty);
+
+            int positionId = GetPositionIdByPositionName(model.PositionName);
+            int companyId = GetCompanyIdByCompanyName(model.CompanyName);
+
+            employee = _employeeConverter.ConvertDTOByModel(model);
+
+            employee.CompanyId = companyId;
+            employee.PositionId = positionId;
+
+            Database.Employee.Update(employee);
+            Database.Save();
         }
 
         public EmployeeDTO Get(int id)
