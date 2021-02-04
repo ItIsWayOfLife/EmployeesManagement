@@ -122,5 +122,10 @@ namespace EmployeesManagement.Core.Services
 
             return companyDTO;
         }
+
+        public IEnumerable<string> GetAllName()
+        {
+            return Database.Company.GetAllName();
+        }
     }
 }

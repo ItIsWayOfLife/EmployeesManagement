@@ -4,7 +4,7 @@ using System;
 
 namespace EmployeesManagement.Core.Interfaces.IServices
 {
-    public interface ICompanyService : ICrudableService<CompanyDTO>, IDisposable
+    public interface ICompanyService : ICrudableService<CompanyDTO>, IGetAllName, IDisposable
     {
 
     }
