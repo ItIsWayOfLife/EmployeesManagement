@@ -6,16 +6,10 @@ using EmployeesManagement.Core.Services;
 using EmployeesManagement.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using EmployeesManagement.Core.Converters;
-using EmployeesManagement.Web.Interfaces;
 using EmployeesManagement.Web.Converters;
 using EmployeesManagement.Web.Interfaces.IViewConverters;
 
@@ -49,7 +43,6 @@ namespace EmployeesManagement.Web
             services.AddTransient<IPositionViewConverter, PositionViewConverter>();
             services.AddTransient<ICompanyViewConverter, CompanyViewConverter>();
             services.AddTransient<IEmployeeViewConverter, EmployeeViewConverter>();
-
 
             services.AddControllersWithViews();
         }

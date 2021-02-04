@@ -1,9 +1,6 @@
 ﻿using EmployeesManagement.Core.Interfaces.IServices;
-using EmployeesManagement.Web.Interfaces;
 using EmployeesManagement.Web.Interfaces.IViewConverters;
-using EmployeesManagement.Web.Models.Activity;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace EmployeesManagement.Web.Controllers
 {
