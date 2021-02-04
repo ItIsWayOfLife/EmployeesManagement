@@ -48,7 +48,8 @@ namespace EmployeesManagement.Infrastructure.Repositories
 
         public void Create(Company item)
         {
-            var query = "INSERT INTO Companies(Name, LegalFormId, ActivityId) output INSERTED.ID VALUES (@Name, @LegalFormId, @ActivityId)";
+            var query = "INSERT INTO Companies(Name, LegalFormId, ActivityId) output INSERTED.ID VALUES " +
+                "(@Name, @LegalFormId, @ActivityId)";
             var command = CreateCommand(query);
 
             command.Parameters.AddWithValue("@Name", item.Name);
@@ -91,20 +92,21 @@ namespace EmployeesManagement.Infrastructure.Repositories
             return currentSize;
         }
 
-        /// <summary>
-        /// Read data and convert to company model.
-        /// </summary>
-        /// <param name="reader">Sql data reader.</param>
-        /// <returns>Model company.</returns>
-        private Company ReadCompamy(SqlDataReader reader)
+        public IEnumerable<string> GetAllName()
         {
-            return new Company
+            var companyNames = new List<string>();
+
+            var command = CreateCommand("SELECT Name FROM Companies WITH(NOLOCK)");
+
+            using (var reader = command.ExecuteReader())
             {
-                Id = Convert.ToInt32(reader["Id"]),
-                Name = reader["Name"].ToString(),
-                LegalFormId = Convert.ToInt32(reader["LegalFormId"]),
-                ActivityId = Convert.ToInt32(reader["ActivityId"])
-            };
+                while (reader.Read())
+                {
+                    companyNames.Add(reader["Name"].ToString());
+                }
+            }
+
+            return companyNames;
         }
 
         public int? GetIdByName(string name)
@@ -123,21 +125,20 @@ namespace EmployeesManagement.Infrastructure.Repositories
             }
         }
 
-        public IEnumerable<string> GetAllName()
+        /// <summary>
+        /// Read data and convert to company model.
+        /// </summary>
+        /// <param name="reader">Sql data reader.</param>
+        /// <returns>Model company.</returns>
+        private Company ReadCompamy(SqlDataReader reader)
         {
-            var companyNames = new List<string>();
-
-            var command = CreateCommand("SELECT Name FROM Companies WITH(NOLOCK)");
-
-            using (var reader = command.ExecuteReader())
+            return new Company
             {
-                while (reader.Read())
-                {
-                    companyNames.Add(reader["Name"].ToString());
-                }
-            }
-
-            return companyNames;
+                Id = Convert.ToInt32(reader["Id"]),
+                Name = reader["Name"].ToString(),
+                LegalFormId = Convert.ToInt32(reader["LegalFormId"]),
+                ActivityId = Convert.ToInt32(reader["ActivityId"])
+            };
         }
     }
 }

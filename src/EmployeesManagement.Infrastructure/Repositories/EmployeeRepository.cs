@@ -47,7 +47,8 @@ namespace EmployeesManagement.Infrastructure.Repositories
 
         public void Create(Employee item)
         {
-            var query = "INSERT INTO Employees(Firstname, Secondname, Middlename, DateEmployment, PositionId, CompanyId) output INSERTED.ID VALUES (@Firstname, @Secondname, @Middlename, @DateEmployment, @PositionId, @CompanyId)";
+            var query = "INSERT INTO Employees(Firstname, Secondname, Middlename, DateEmployment, PositionId, CompanyId) output" +
+                " INSERTED.ID VALUES (@Firstname, @Secondname, @Middlename, @DateEmployment, @PositionId, @CompanyId)";
             var command = CreateCommand(query);
 
             command.Parameters.AddWithValue("@Firstname", item.Firstname);
