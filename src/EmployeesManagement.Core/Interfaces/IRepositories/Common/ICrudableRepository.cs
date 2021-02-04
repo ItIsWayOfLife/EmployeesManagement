@@ -1,6 +1,10 @@
 ﻿
 namespace EmployeesManagement.Core.Interfaces.IRepositories.Common
 {
+    /// <summary>
+    /// CRUD (Create, read, update and delete) operations with entity model.
+    /// </summary>
+    /// <typeparam name="T">Entity model.</typeparam>
     public interface ICrudableRepository<T> : IGetableRepository<T> where T : class
     {
         /// <summary>

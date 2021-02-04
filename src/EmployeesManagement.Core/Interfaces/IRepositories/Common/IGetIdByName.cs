@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace EmployeesManagement.Core.Interfaces.IRepositories.Common
 {
+    /// <summary>
+    /// Read operation id by name.
+    /// </summary>
     public interface IGetIdByName
     {
         /// <summary>

@@ -6,7 +6,7 @@ namespace EmployeesManagement.Core.Converters
 {
     public class CompanyConverter : IConverter<Company, CompanyDTO>
     {
-        public Company ConvertDTOByModel(CompanyDTO modelDTO)
+        public Company ConvertDTOToModel(CompanyDTO modelDTO)
         {
             return new Company()
             {
@@ -15,7 +15,7 @@ namespace EmployeesManagement.Core.Converters
             };
         }
 
-        public CompanyDTO ConvertModelByDTO(Company model)
+        public CompanyDTO ConvertModelToDTO(Company model)
         {
             return new CompanyDTO()
             {

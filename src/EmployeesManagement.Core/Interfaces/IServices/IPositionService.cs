@@ -4,6 +4,9 @@ using System;
 
 namespace EmployeesManagement.Core.Interfaces.IServices
 {
+    /// <summary>
+    /// Service for working with model Position.
+    /// </summary>
     public interface IPositionService : IGetAllService<Position>, IGetAllName, IDisposable
     {
 

@@ -2,6 +2,9 @@
 
 namespace EmployeesManagement.Core.Interfaces
 {
+    /// <summary>
+    /// Read all names.
+    /// </summary>
     public interface IGetAllName
     {
         /// <summary>

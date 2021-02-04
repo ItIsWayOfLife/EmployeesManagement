@@ -4,7 +4,6 @@ using EmployeesManagement.Core.Exceptions;
 using EmployeesManagement.Core.Interfaces;
 using EmployeesManagement.Core.Interfaces.IServices;
 using EmployeesManagement.Core.Services.Common;
-using System;
 using System.Collections.Generic;
 
 namespace EmployeesManagement.Core.Services
@@ -47,18 +46,12 @@ namespace EmployeesManagement.Core.Services
             int legalFormId = GetLegalFormIdByLegalFormName(model.LegalFormName);
             int activityId = GetActivityIdByActivityName(model.ActivityName);
 
-            var company = _companyConverter.ConvertDTOByModel(model);
+            var company = _companyConverter.ConvertDTOToModel(model);
 
             company.LegalFormId = legalFormId;
             company.ActivityId = activityId;
 
             Database.Company.Create(company);
-            Database.Save();
-        }
-
-        public void Delete(int id)
-        {
-            Database.Company.Delete(id);
             Database.Save();
         }
 
@@ -82,6 +75,22 @@ namespace EmployeesManagement.Core.Services
             Database.Save();
         }
 
+        public void Delete(int id)
+        {
+            Database.Company.Delete(id);
+            Database.Save();
+        }
+
+        public IEnumerable<string> GetAllName()
+        {
+            return Database.Company.GetAllName();
+        }
+
+        /// <summary>
+        /// Get legal form id by legal form name.
+        /// </summary>
+        /// <param name="legalFormName">Legal form name.</param>
+        /// <returns>Id legal form.</returns>
         private int GetLegalFormIdByLegalFormName(string legalFormName)
         {
             int? legalFormId = Database.LegalForm.GetIdByName(legalFormName);
@@ -94,6 +103,11 @@ namespace EmployeesManagement.Core.Services
             return legalFormId.Value;
         }
 
+        /// <summary>
+        /// Get activity id by activity name.
+        /// </summary>
+        /// <param name="activityName">Activity name.</param>
+        /// <returns>Id activity.</returns>
         private int GetActivityIdByActivityName(string activityName)
         {
             int? activityId = Database.Activity.GetIdByName(activityName);
@@ -116,16 +130,11 @@ namespace EmployeesManagement.Core.Services
             company.LegalForm = Database.LegalForm.Get(company.LegalFormId);
             company.Activity = Database.Activity.Get(company.ActivityId);
 
-            var companyDTO = _companyConverter.ConvertModelByDTO(company);
+            var companyDTO = _companyConverter.ConvertModelToDTO(company);
 
             companyDTO.Size = Database.Company.GetCurrentSizeByCompanyId(company.Id);
 
             return companyDTO;
-        }
-
-        public IEnumerable<string> GetAllName()
-        {
-            return Database.Company.GetAllName();
         }
     }
 }
