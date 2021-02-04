@@ -1,8 +1,42 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Главная";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner color-te">
+        <div class="carousel-item active">
+            <img src="~/files/em1.jpg" style="height: 550px;" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <a class="btn btn-outline-primary" asp-action="Index" asp-controller="Employee">Перейти к работникам</a><br />
+                <p class="mt-2 text-primary font-weight-bold">Найдите работу, в которую влюбитесь, и вам больше не придётся трудиться ни одного дня в жизни.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/files/em2.jpg" style="height: 550px;" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <a class="btn btn-outline-primary" asp-action="Index" asp-controller="Company">Перейти к компаниям</a><br />
+                <p class="mt-2 text-primary font-weight-bold">Если перед коллективом нет цели, то нельзя найти способа его организации.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/files/em3.jpg" style="height: 550px;" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <a class="btn btn-outline-primary" asp-action="Index" asp-controller="Employee">Перейти к работникам</a><br />
+                <p class="mt-2 text-primary font-weight-bold">Не могу стоять, пока другие работают... Пойду полежу.</p>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Предыдущая</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Следующая</span>
+    </a>
 </div>

@@ -13,7 +13,8 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item font-weight-bold">
-                        @if (Context.Request.Path.ToString() == "/" || Context.Request.Path.ToString().ToLower().Contains("home"))
+                        @if ((Context.Request.Path.ToString() == "/" || Context.Request.Path.ToString().ToLower().Contains("home"))
+                            && !Context.Request.Path.ToString().ToLower().Contains("privacy"))
                         {
                             <a class="nav-link active" asp-controller="Home" asp-action="Index">Управление персоналом</a>
                         }
