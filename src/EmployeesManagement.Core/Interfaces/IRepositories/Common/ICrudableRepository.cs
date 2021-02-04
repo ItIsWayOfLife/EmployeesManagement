@@ -1,5 +1,5 @@
 ﻿
-namespace EmployeesManagement.Core.Interfaces.IRepository.Common
+namespace EmployeesManagement.Core.Interfaces.IRepositories.Common
 {
     public interface ICrudableRepository<T> : IGetableRepository<T> where T : class
     {

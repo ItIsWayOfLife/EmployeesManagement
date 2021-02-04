@@ -1,7 +1,7 @@
 ﻿using EmployeesManagement.Core.Entities;
-using EmployeesManagement.Core.Interfaces.IRepository.Common;
+using EmployeesManagement.Core.Interfaces.IRepositories.Common;
 
-namespace EmployeesManagement.Core.Interfaces.IRepository
+namespace EmployeesManagement.Core.Interfaces.IRepositories
 {
     public interface IPositionRepository : IGetableRepository<Position>
     {
