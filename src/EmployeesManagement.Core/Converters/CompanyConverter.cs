@@ -21,8 +21,8 @@ namespace EmployeesManagement.Core.Converters
             {
                 Id = model.Id,
                 Name = model.Name,
-                LegalFormName = model.LegalForm.Name,
-                ActivityName = model.Activity.Name
+                LegalFormName = model?.LegalForm?.Name,
+                ActivityName = model?.Activity?.Name
             };
         }
     }

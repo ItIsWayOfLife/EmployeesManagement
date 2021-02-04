@@ -35,6 +35,7 @@ namespace EmployeesManagement.Web
             services.AddTransient<IActivityService, ActivityService>();
             services.AddTransient<ILegalFormService, LegalFormService>();
             services.AddTransient<IPositionService, PositionService>();
+            services.AddTransient<ICompanyService, CompanyService>();
 
             services.AddTransient<IConverter<Company, CompanyDTO>, CompanyConverter>();
 

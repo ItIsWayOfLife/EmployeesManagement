@@ -1,0 +1,59 @@
+﻿@model IEnumerable<EmployeesManagement.Web.Models.Company.CompanyViewModel>
+
+@{
+    ViewBag.Title = "Компании";
+}
+
+<div class="row mb-5">
+
+    <div class="col-12 shadow-lg p-0 bg-white">
+        <div class="card">
+            <div class="card-header">
+                <h3>Компании</h3>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    @if (Model.Any())
+                    {
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Id
+                                </th>
+
+                                <th>
+                                    Название
+                                </th>
+                                <th>
+                                    Орг-прав форма
+                                </th>
+                                <th>
+                                    Вид деятельности
+                                </th>
+                                <th>
+                                    Кол.раб. в комп.(разм комп.)
+                                </th>
+                            </tr>
+                            @foreach (var company in Model)
+                            {
+                                <tr>
+                                    <td>@company.Id</td>
+                                    <td>@company.Name</td>
+                                    <td>@company.LegalFormName</td>
+                                    <td>@company.ActivityName</td>
+                                    <td>@company.Size</td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                    else
+                    {
+                        <h2 class="text-center text-danger">
+                            Список компаний пуст
+                        </h2>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
