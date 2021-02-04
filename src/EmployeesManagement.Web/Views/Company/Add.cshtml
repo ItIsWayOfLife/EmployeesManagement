@@ -1,0 +1,46 @@
+﻿@model EmployeesManagement.Web.Models.Company.AddCompanySelectListViewModel
+
+@{
+    ViewBag.Title = "Добавление компании";
+}
+
+<div class="row mb-5">
+    <div class="col-6 m-auto">
+        <div class="card m-auto">
+            <div class="card-header">
+                <h3>Добавление компании</h3>
+            </div>
+            <div class="card-body">
+
+                <form method="post" asp-action="Add" enctype="multipart/form-data">
+
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                    <div class="form-group col-12">
+                        <label asp-for="AddCompanyViewModel.Name"></label>
+                        <span class="text-danger" asp-validation-for="AddCompanyViewModel.Name"></span><br />
+                        <input class="form-control" asp-for="AddCompanyViewModel.Name" />
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label asp-for="AddCompanyViewModel.LegalFormName"></label>
+                        <span class="text-danger" asp-validation-for="AddCompanyViewModel.LegalFormName"></span><br />
+                        <select class="form-control" asp-items="Model.LegalForms" asp-for="AddCompanyViewModel.LegalFormName"></select>
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label asp-for="AddCompanyViewModel.ActivityName"></label>
+                        <span class="text-danger" asp-validation-for="AddCompanyViewModel.ActivityName"></span><br />
+                        <select class="form-control" asp-items="Model.Activities" asp-for="AddCompanyViewModel.ActivityName"></select>
+                    </div><br />
+
+                    <div class="form-group col-12">
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                        <a asp-action="Index" class="btn btn-warning">Назад</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

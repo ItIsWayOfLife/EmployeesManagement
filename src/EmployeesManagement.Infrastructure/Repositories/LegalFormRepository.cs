@@ -45,6 +45,23 @@ namespace EmployeesManagement.Infrastructure.Repositories
             return legalForms;
         }
 
+        public IEnumerable<string> GetAllName()
+        {
+            var legalFormNames = new List<string>();
+
+            var command = CreateCommand("SELECT Name FROM LegalForms WITH(NOLOCK)");
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    legalFormNames.Add(reader["Name"].ToString());
+                }
+            }
+
+            return legalFormNames;
+        }
+
         public int? GetIdByName(string name)
         {
             var command = CreateCommand("SELECT Id FROM LegalForms WITH(NOLOCK) WHERE Name = @Name");

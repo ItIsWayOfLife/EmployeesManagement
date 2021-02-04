@@ -3,7 +3,7 @@ using EmployeesManagement.Core.Interfaces.IRepositories.Common;
 
 namespace EmployeesManagement.Core.Interfaces.IRepositories
 {
-    public interface IActivityRepository : IGetableRepository<Activity>, IGetIdByName
+    public interface IActivityRepository : IGetableRepository<Activity>, IGetIdByName, IGetAllName
     {
 
     }

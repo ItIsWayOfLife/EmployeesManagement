@@ -4,7 +4,7 @@ using System;
 
 namespace EmployeesManagement.Core.Interfaces.IServices
 {
-    public interface ILegalFormService : IGetAllService<LegalForm>, IDisposable
+    public interface ILegalFormService : IGetAllService<LegalForm>, IGetAllName, IDisposable
     {
 
     }

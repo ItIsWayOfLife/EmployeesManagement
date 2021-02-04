@@ -45,6 +45,23 @@ namespace EmployeesManagement.Infrastructure.Repositories
             return activities;
         }
 
+        public IEnumerable<string> GetAllName()
+        {
+            var ActivityNames = new List<string>();
+
+            var command = CreateCommand("SELECT Name FROM Activities WITH(NOLOCK)");
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    ActivityNames.Add(reader["Name"].ToString());
+                }
+            }
+
+            return ActivityNames;
+        }
+
         public int? GetIdByName(string name)
         {
             var command = CreateCommand("SELECT Id FROM Activities WITH(NOLOCK) WHERE Name = @Name");

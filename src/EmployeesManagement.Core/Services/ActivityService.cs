@@ -17,5 +17,10 @@ namespace EmployeesManagement.Core.Services
         {
             return Database.Activity.GetAll();
         }
+
+        public IEnumerable<string> GetAllName()
+        {
+          return  Database.Activity.GetAllName();
+        }
     }
 }

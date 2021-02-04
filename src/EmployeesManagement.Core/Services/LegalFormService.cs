@@ -17,5 +17,10 @@ namespace EmployeesManagement.Core.Services
         {
             return Database.LegalForm.GetAll();
         }
+
+        public IEnumerable<string> GetAllName()
+        {
+            return Database.LegalForm.GetAllName();
+        }
     }
 }

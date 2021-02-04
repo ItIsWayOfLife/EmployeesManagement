@@ -4,7 +4,7 @@ using System;
 
 namespace EmployeesManagement.Core.Interfaces.IServices
 {
-    public interface IActivityService : IGetAllService<Activity>, IDisposable
+    public interface IActivityService : IGetAllService<Activity>, IGetAllName, IDisposable
     {
 
     }
