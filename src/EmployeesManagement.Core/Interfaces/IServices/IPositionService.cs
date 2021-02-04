@@ -4,7 +4,7 @@ using System;
 
 namespace EmployeesManagement.Core.Interfaces.IServices
 {
-    public interface IPositionService : IGetAllService<Position>, IDisposable
+    public interface IPositionService : IGetAllService<Position>, IGetAllName, IDisposable
     {
 
     }

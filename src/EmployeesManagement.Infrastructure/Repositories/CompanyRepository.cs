@@ -122,5 +122,22 @@ namespace EmployeesManagement.Infrastructure.Repositories
                 return (int?)command.ExecuteScalar();
             }
         }
+
+        public IEnumerable<string> GetAllName()
+        {
+            var companyNames = new List<string>();
+
+            var command = CreateCommand("SELECT Name FROM Companies WITH(NOLOCK)");
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    companyNames.Add(reader["Name"].ToString());
+                }
+            }
+
+            return companyNames;
+        }
     }
 }

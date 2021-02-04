@@ -61,6 +61,23 @@ namespace EmployeesManagement.Infrastructure.Repositories
             }
         }
 
+        public IEnumerable<string> GetAllName()
+        {
+            var positionNames = new List<string>();
+
+            var command = CreateCommand("SELECT Name FROM Positions WITH(NOLOCK)");
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    positionNames.Add(reader["Name"].ToString());
+                }
+            }
+
+            return positionNames;
+        }
+
         /// <summary>
         /// Read data and convert to position model.
         /// </summary>

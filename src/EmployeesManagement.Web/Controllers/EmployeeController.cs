@@ -1,6 +1,9 @@
-﻿using EmployeesManagement.Core.Interfaces.IServices;
+﻿using EmployeesManagement.Core.Exceptions;
+using EmployeesManagement.Core.Interfaces.IServices;
 using EmployeesManagement.Web.Interfaces.IViewConverters;
+using EmployeesManagement.Web.Models.Employee;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,5 +38,18 @@ namespace EmployeesManagement.Web.Controllers
 
             return View(emoloyeeViews);
         }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View(new AddEmployeeSelectListViewModel()
+            {
+                AddEmployeeViewModel = new AddEmployeeViewModel() { DateEmployment = DateTime.Now },
+                Positions = null,
+                Companies = null
+            });
+        }
+
+       
     }
 }
