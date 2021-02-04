@@ -22,13 +22,7 @@ namespace EmployeesManagement.Core.Services
         {
             var company = Database.Company.Get(id);
 
-            company.LegalForm = Database.LegalForm.Get(company.LegalFormId);
-            company.Activity = Database.Activity.Get(company.ActivityId);
-
-            var companyDTO = _converterCompany.ConvertModelByDTO(company);
-
-            //todo query DB
-            companyDTO.Size = 0;
+            var companyDTO = ConvertCompanyToCompanyDTO(company);
 
             return companyDTO;
         }
@@ -41,17 +35,9 @@ namespace EmployeesManagement.Core.Services
 
             foreach (var company in companies)
             {
-                company.LegalForm = Database.LegalForm.Get(company.LegalFormId);
-                company.Activity = Database.Activity.Get(company.ActivityId);
-
-                CompanyDTO companyDTO = _converterCompany.ConvertModelByDTO(company);
-
-                //todo query DB
-                companyDTO.Size = 0;
-
-                companyDTOs.Add(_converterCompany.ConvertModelByDTO(company));             
+                companyDTOs.Add(ConvertCompanyToCompanyDTO(company));
             }
-         
+
             return companyDTOs;
         }
 
@@ -70,5 +56,21 @@ namespace EmployeesManagement.Core.Services
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        ///  Convert company model to companyDTO model.
+        /// </summary>
+        /// <param name="company">Model company.</param>
+        /// <returns>Model companyDTO.</returns>
+        private CompanyDTO ConvertCompanyToCompanyDTO(Company company)
+        {
+            company.LegalForm = Database.LegalForm.Get(company.LegalFormId);
+            company.Activity = Database.Activity.Get(company.ActivityId);
+
+            var companyDTO = _converterCompany.ConvertModelByDTO(company);
+
+            companyDTO.Size = Database.Company.GetCurrentSizeByCompanyId(company.Id);
+
+            return companyDTO;
+        }
     }
 }

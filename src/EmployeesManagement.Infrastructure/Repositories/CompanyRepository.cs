@@ -80,6 +80,17 @@ namespace EmployeesManagement.Infrastructure.Repositories
             command.ExecuteNonQuery();
         }
 
+        public int GetCurrentSizeByCompanyId(int companyId)
+        {
+            var command = CreateCommand("SELECT COUNT(*) FROM Employees WITH(NOLOCK) WHERE CompanyId = @CompanyId");
+
+            command.Parameters.AddWithValue("@CompanyId", companyId);
+
+            int currentSize = Convert.ToInt32(command.ExecuteScalar());
+
+            return currentSize;
+        }
+
         /// <summary>
         /// Read data and convert to company model.
         /// </summary>
