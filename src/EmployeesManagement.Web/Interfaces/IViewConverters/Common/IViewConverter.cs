@@ -3,7 +3,7 @@
 namespace EmployeesManagement.Web.Interfaces.IViewConverters.Common
 {
     /// <summary>
-    /// Converter ViewModel to model.
+    /// Converter model to viewModel.
     /// </summary>
     /// <typeparam name="TModel">Model.</typeparam>
     /// <typeparam name="TViewModel">ViewModel.</typeparam>

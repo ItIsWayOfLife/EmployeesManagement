@@ -81,17 +81,9 @@ namespace EmployeesManagement.Web.Controllers
                 return RedirectToAction("Error", "Home", new { requestId = "400", errorInfo = "Компания не найдена" });
             }
 
-            var editCompanyViewModel = new EditCompanyViewModel()
-            {
-                Id = companyDTO.Id,
-                ActivityName = companyDTO.ActivityName,
-                LegalFormName = companyDTO.LegalFormName,
-                Name = companyDTO.Name
-            };
-
             return View(new EditCompanySelectListViewModel()
             {
-                EditCompanyViewModel = editCompanyViewModel,
+                EditCompanyViewModel = _companyViewConverter.ConvertModelToEditViewModel(companyDTO),
                 LegalForms = new SelectList(_legalFormService.GetAllName()),
                 Activities = new SelectList(_activityService.GetAllName())
             });
